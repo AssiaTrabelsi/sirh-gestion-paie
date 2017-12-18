@@ -8,14 +8,14 @@
 	<import resource="classpath:cotisations-non-imposables.xml" />
 
 	<bean id="bulletin1" class="dev.paie.entite.BulletinSalaire">
-		<property name="primeExceptionnelle" value="1000"></property>	
+		<property name="primeExceptionnelle" value="1000"></property>
 		<property name="remunerationEmploye" ref="employe1"></property>
-		
+
 	</bean>
 
 
 	<bean id="employe1" class="dev.paie.entite.RemunerationEmploye">
-	<property name="entreprise" ref="entreprise1"></property>
+		<property name="entreprise" ref="entreprise1"></property>
 		<property name="grade" ref="grade1"></property>
 		<property name="matricule" value="M01"></property>
 		<property name="profilRemuneration" ref="profil1"></property>
@@ -52,10 +52,10 @@
 		<property name="denomination" value="Dev Entreprise"></property>
 		<property name="codeNaf" value="6202A"></property>
 	</bean>
-<bean id="grade1" class="dev.paie.entite.Grade">
+	<bean id="grade1" class="dev.paie.entite.Grade">
 		<property name="nbHeuresBase" value="151.67"></property>
 		<property name="tauxBase" value="11.0984"></property>
-		
+
 	</bean>
 
 
