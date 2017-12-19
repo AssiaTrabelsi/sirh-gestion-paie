@@ -27,16 +27,19 @@ public class CalculerRemunerationServiceSimple implements
 
 		Grade grade = bulletin.getRemunerationEmploye().getGrade();
 
+		//Salaire_Base
 		BigDecimal salaireDeBase = grade.getNbHeuresBase().multiply(grade.getTauxBase());
 		String salairedeBaseStr = paieUtils.formaterBigDecimal(salaireDeBase);
 		BigDecimal salaireDeBaseArrondi = new BigDecimal(salairedeBaseStr);
 		resultat.setSalaireDeBase(salairedeBaseStr);
 
+		//Salaire_Brut
 		BigDecimal salaireBrut = salaireDeBaseArrondi.add(bulletin.getPrimeExceptionnelle());
 		String salaireBrutStr = paieUtils.formaterBigDecimal(salaireBrut);
 		BigDecimal salaireBrutArrondi = new BigDecimal(salaireBrutStr);
 		resultat.setSalaireBrut(salaireBrutStr);
 
+		//Total_Retenue_Salarial
 		List<Cotisation> cotisationNonImposable = bulletin.getRemunerationEmploye().getProfilRemuneration()
 				.getCotisationsNonImposables();
 
@@ -46,17 +49,17 @@ public class CalculerRemunerationServiceSimple implements
 		
 		resultat.setTotalRetenueSalarial(paieUtils.formaterBigDecimal(totalRetenueSalariale));
 
-		
+		//Total_Cotisation_Patronales
 		BigDecimal totalCotisationPatronales = cotisationNonImposable.stream().filter(t->t.getTauxPatronal()!=null)
 		.map(t->t.getTauxPatronal().multiply(salaireBrutArrondi)).reduce((c1, c2) -> c1.add(c2)).orElse(new BigDecimal("0.00"));
 		resultat.setTotalCotisationsPatronales(paieUtils.formaterBigDecimal(totalCotisationPatronales));
 		
-		
+		//Net_Imposable
 		BigDecimal netImposable = salaireBrutArrondi.subtract(new BigDecimal(resultat.getTotalRetenueSalarial())) ;
 		resultat.setNetImposable(paieUtils.formaterBigDecimal(netImposable));
 		
 		
-		
+		//Net_A_Payer
 		List<Cotisation> cotisationImposable = bulletin.getRemunerationEmploye().getProfilRemuneration()
 				.getCotisationsImposables();
 		
