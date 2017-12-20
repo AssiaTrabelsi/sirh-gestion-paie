@@ -2,9 +2,9 @@ package dev.paie.spring;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
+@Import(DataSourceMySQLConfig.class)
 public class JpaConfig {
 
 	@Bean
@@ -21,8 +22,6 @@ public class JpaConfig {
 		txManager.setEntityManagerFactory(emf);
 		return txManager;
 	}
-
-	
 	// Cette configuration nécessite une source de données configurée.
 	// Elle s'utilise donc en association avec un autre fichier de configuration
 	// définissant unbean DataSource.
