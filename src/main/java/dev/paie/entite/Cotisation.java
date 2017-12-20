@@ -25,9 +25,6 @@ public class Cotisation {
 	private BigDecimal tauxSalarial;
 	@Column
 	private BigDecimal tauxPatronal;
-	@ManyToMany(mappedBy = "cotisationsNonImposables")
-	private Set<ProfilRemuneration> Profils;
-
 	
 	
 	public String getCode() {

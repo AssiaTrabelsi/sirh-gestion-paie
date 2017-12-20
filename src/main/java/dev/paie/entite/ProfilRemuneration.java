@@ -19,14 +19,16 @@ public class ProfilRemuneration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="code")
+	@Column(name = "code")
 	private String code;
-	
-    @OneToMany
-   	private List<Cotisation> cotisationsNonImposables;
-    @OneToMany
-   	private List<Cotisation> cotisationsImposables;
-    @OneToMany
+
+	@ManyToMany
+	@JoinTable(name = "profilRemuneration_cotisationsNonImposables")
+	private List<Cotisation> cotisationsNonImposables;
+	@ManyToMany
+	@JoinTable(name = "profilRemuneration-ncotisationsImposables")
+	private List<Cotisation> cotisationsImposables;
+	@ManyToMany
 	private List<Avantage> avantages;
 
 	public Integer getId() {
