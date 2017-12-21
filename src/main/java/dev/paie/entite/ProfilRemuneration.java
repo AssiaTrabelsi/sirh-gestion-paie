@@ -7,10 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +23,11 @@ public class ProfilRemuneration {
 	@ManyToMany
 	@JoinTable(name = "profilRemuneration_cotisationsNonImposables")
 	private List<Cotisation> cotisationsNonImposables;
+	
 	@ManyToMany
-	@JoinTable(name = "profilRemuneration-ncotisationsImposables")
+	@JoinTable(name = "profilRemuneration_cotisationsImposables")
 	private List<Cotisation> cotisationsImposables;
+	 
 	@ManyToMany
 	private List<Avantage> avantages;
 
