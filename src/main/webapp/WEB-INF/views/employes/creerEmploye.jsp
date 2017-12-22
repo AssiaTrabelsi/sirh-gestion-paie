@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="well well-sm">
-				<button type="button" class="btn btn-link">employes</button>
+				<a type="button"class="btn btn-link"  href="<c:url value='lister'/>">employes</a>
 				<button type="button" class="btn btn-link">Bulletins</button>
 			</div>
 			<center>

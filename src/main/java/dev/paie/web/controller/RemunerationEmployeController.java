@@ -27,7 +27,6 @@ public class RemunerationEmployeController {
 	EntrepriseRepository entrepriseRepository;
 	@Autowired
 	ProfilRepository profilRepository;
-	
 	@Autowired
 	RemunerationEmployeRepository remunerationEmployeRepository ;
 
@@ -60,7 +59,7 @@ public class RemunerationEmployeController {
 	public ModelAndView listerEmploye() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("employes/listerEmploye");
-		
+		mv.addObject("employes", remunerationEmployeRepository.findAll());
 		return mv;
 	}
 

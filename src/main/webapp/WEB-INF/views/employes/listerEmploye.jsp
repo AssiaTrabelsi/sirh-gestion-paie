@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="well well-sm">
-				<button type="button" class="btn btn-link">employes</button>
+				<a type="button"class="btn btn-link">employes</button>
 				<button type="button" class="btn btn-link">Bulletins</button>
 			</div>
 			<center>
@@ -29,14 +29,17 @@
 					<tr>
 						<th>Date/heure de création</th>
 						<th>Matricule</th>
-						<th>Gradee</th>
+						<th>Grade</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+					<c:forEach var="employe" items="${employes}">
+					   <td><${employe.entreprise.denomination}</td>
+						<td>${employe.matricule}</td>
+						<td>${employe.grade.code}</td>
+	
+						</c:forEach>
 					</tr>
 					<tr>
 						<td></td>
