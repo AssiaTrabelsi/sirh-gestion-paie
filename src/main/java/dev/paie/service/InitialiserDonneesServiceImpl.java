@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,14 @@ import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
+import dev.paie.entite.Utilisateur;
+import dev.paie.entite.Utilisateur.ROLES;
 
 @Service
 public class InitialiserDonneesServiceImpl implements InitialiserDonneesService {
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private ApplicationContext context;
 
@@ -43,5 +48,19 @@ public class InitialiserDonneesServiceImpl implements InitialiserDonneesService 
 			em.persist(p);
 		}
 
+		Utilisateur user1 = new Utilisateur();
+		user1.setNomUtilisateur("user1");
+		user1.setMotDePasse(passwordEncoder.encode("user1"));
+		user1.setEstActif(true);
+		user1.setRole(ROLES.ROLE_ADMINISTRATEUR);
+
+		em.persist(user1);
+		Utilisateur user2 = new Utilisateur();
+		user2.setNomUtilisateur("user2");
+		user2.setMotDePasse(passwordEncoder.encode("user2"));
+		user2.setEstActif(true);
+		user2.setRole(ROLES.ROLE_UTILISATEUR);
+		em.persist(user2);
 	}
+
 }
